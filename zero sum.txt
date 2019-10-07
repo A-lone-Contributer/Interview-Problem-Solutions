@@ -1,0 +1,55 @@
+# To find the Subarray with zero sum
+
+
+# This problem can be solve in O(n^2) time by checking for sum of all the
+# Sub-Arrays although we can improve this solution by the fact that if we 
+# encounter the same sum again that means the in between elements contributed nothing
+# hence our answer is that Sub-array. This runs in O(n) time.
+
+def zeroSum(arr, n):
+    # Using a Hash map like DS (dictionary in python) to keep
+    # track of the previous encountered sum
+    # maps sum and index value
+    hash_map = {}
+
+    # keep track of sum
+    sum_so_far = 0
+
+    # traversing whole array
+    for i in range(0, n + 1):
+        # getting the value of sum from our dictionary
+        old_idx = hash_map.get(sum_so_far)
+        # edge case where our Sub-array extends to the last element
+        if not old_idx and i == n:
+            return None
+
+        # checking if have value already available in Hash map
+        elif not old_idx:
+
+            # inserting sum and key pair like {sum:key}
+            hash_map[sum_so_far] = i
+            # adding the array element to our sum variable
+            sum_so_far += arr[i]
+        else:
+
+            # case where we have encountered a sum present in our Hash map
+            # thus it means the middle encountered elements contributed a sum of zero
+            # that is from old index to our current value
+            return arr[old_idx:i]
+
+    # No Sub-array found with sum=0
+    return None
+
+
+# test case 1
+arr1 = [4, 2, 0, 1, 6]
+n = len(arr1)
+print(zeroSum(arr1, n))
+
+# test case 2
+arr2 = [-3, 2, 3, 1, 6]
+print(zeroSum(arr2, n))
+
+# test case 3
+arr3 = [4, 2, -3, 1, 6]
+print(zeroSum(arr3, n))
