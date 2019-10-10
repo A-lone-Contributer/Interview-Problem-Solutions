@@ -1,0 +1,81 @@
+# The question we'll work through is the following: return a
+# new sorted merged list from K sorted lists, each with size N
+
+# Asked in Amazon,Flipkart and many more.
+# Difficulty -> Medium
+
+# Approach:
+# There can be a lot of ways to approach this problem , one most intuitive approach
+# would be to copy the elements  into a N*K size array and then sort(any O(N*log(N)) algorithm) the
+# resultant array which will take O(NK*log(NK))
+
+# Another approach (for smaller arrays) would be to compare the elements in every array like we do in
+# classic merge-sort and get a resultant sorted array at the end. This would take O(NK*K) time
+
+# One efficient solution is to first merge arrays into groups of 2. After first merging, we have K/2 arrays.
+# We again merge arrays in groups, now we have K/4 arrays. We keep doing it unit we have one array left.
+# The time complexity of this solution would O(NK*Log(K))
+
+# Another efficient solution is to use Min Heap. It has same time complexity which is O(NK*Log(K)).
+# But for different sized arrays, this solution works much better.
+
+
+# importing heap library
+import heapq
+
+
+def kmerge(lists):
+    # result list with size N*K
+    final_merged_list = []
+
+    # Initialising the heap. WHY?
+    # (One for the index for which list among the list of lists the element lives,
+    # one for the element index which is where the element lives, and the value of the element).
+    # Since we want the key of the heap to be based on the value of the element, we should put that first in the tuple.
+
+    heap = [(given_lists[0], i, 0) for i, given_lists in enumerate(lists) if given_lists]
+
+    # heapify the heap so that we have access to the smallest element as the root node.
+    # to skip this we can use priority queue implementation where elements are sorted as soon as
+    # they are inserted (uses a comparator)
+    heapq.heapify(heap)
+
+    # As long as there are elements in heap
+    while heap:
+        # pop the root (minimum element) from the heap
+        value, list_ind, element_ind = heapq.heappop(heap)
+
+        # append the recently popped element to out result list
+        final_merged_list.append(value)
+
+        # checks whether the list is exhausted. if element index is less than list index
+        # there will be elements. so as soon as there are elements in the given lists
+        # push the tuple  onto the heap
+
+        if element_ind + 1 < len(lists[list_ind]):
+            next_tuple = (lists[list_ind][element_ind + 1],
+                          list_ind,
+                          element_ind + 1)
+            heapq.heappush(heap, next_tuple)
+
+    # Return the final result list
+    return final_merged_list
+
+
+# Test cases including all the edge cases
+lists1 = []
+lists2 = [[], [], []]
+lists3 = [[], [1], [0, 1]]
+lists4 = [[4]]
+lists5 = [[1], [1, 3, 5], [1, 10, 20, 30, 40]]
+lists6 = [[10, 15, 30], [12, 15, 20], [17, 20, 32]]
+
+print(kmerge(lists1))
+print(kmerge(lists2))
+print(kmerge(lists3))
+print(kmerge(lists4))
+print(kmerge(lists5))
+print(kmerge(lists6))
+
+# Time Complexity : O(NK*Log(K))
+# Space Complexity : O(NK)
