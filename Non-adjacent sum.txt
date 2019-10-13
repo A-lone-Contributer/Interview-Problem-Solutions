@@ -23,8 +23,17 @@
 
 def rob(arr):
     n = len(arr)
+    # If the array is empty
+    if arr == 0 or len(arr) == 0:
+        return 0
+
+    # if the array has length one
+    if len(arr) == 1:
+        return arr[0]
+    
     # Stores the first element
     prev2 = arr[0]
+    
     # stores the maximum of first two
     prev1 = max(arr[0], arr[1])
 
