@@ -53,3 +53,6 @@ print(zeroSum(arr2, n))
 # test case 3
 arr3 = [4, 2, -3, 1, 6]
 print(zeroSum(arr3, n))
+
+#Time complexity :O(N)
+#Space complexity : O(N)
