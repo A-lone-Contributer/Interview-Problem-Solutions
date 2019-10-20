@@ -1,0 +1,70 @@
+# Median of Stream of Running Integers.
+
+# Asked in Amazon,Flipkart,Google,Microsoft,Hike,Oracle,Walmart
+
+# Difficulty -> Hard
+
+# Median can be defined as the element in the data set which separates the higher half
+# and lower half of sample.We can get the median element as, when the input size is odd,
+# we take the middle element of sorted data else If the input size is even, we pick average
+# of middle two elements in sorted stream.
+
+# Approach : We can use insertion sort as it is an online algorithm i.e it doesn't require
+# the whole array at the same time for sorting so we can find median easily with the available
+# elements. But this would be inefficient and has a complexity of O(n^2)
+
+# An efficient approach would be to use two heaps, one max heap and min heap. We insert all the
+# elements greater than the effective median in the min heap and those less than effective median on
+# in the max heap. If the length of max heap is greater than min heap then the top element of max heap
+# will be the median and vice versa. If both have same length then we can take the average of root element
+# of min and max heap to find the median
+
+# Import heapq library
+import heapq
+
+# lists for maintaining min heap and max heap
+MinHeap = []
+MaxHeap = []
+
+# take input the number of input to give
+n = int(input())
+# run a loop for each element
+for i in range(1, n + 1):
+    # take each number as input
+    data = int(input())
+
+    # if maxheap is empty or the data input is less than the root node
+    if not MaxHeap or data < abs(MaxHeap[0]):
+        # push the element onto the heap
+        # here -data is used as heapq module only provides min heap so we can
+        # negate values to implement max heap
+        heapq.heappush(MaxHeap, -data)
+    else:
+        # else push onto the min heap
+        heapq.heappush(MinHeap, data)
+
+    # if min heap has more elements as compared to max heap (more than 1)
+    if len(MinHeap) - len(MaxHeap) > 1:
+        # then balancing is needed so balance the heaps by popping from min heap and negating the data as
+        # we are pushing to max heap
+        heapq.heappush(MaxHeap, -heapq.heappop(MinHeap))
+    # else max heap has more elements
+    elif len(MaxHeap) - len(MinHeap) > 1:
+        # then balancing is needed so balance the heaps by popping from max heap and negating the data to get
+        # back original as we are pushing to min heap
+        heapq.heappush(MinHeap, -heapq.heappop(MaxHeap))
+
+    # if both have same number of elements then it is the case of even elements so
+    if len(MinHeap) == len(MaxHeap):
+        # take the average of root nodes
+        print(float(MinHeap[0] - MaxHeap[0]) / 2.0)
+    # else if max heap is bigger then return top of max heap but negate as we want original value
+    elif len(MinHeap) < len(MaxHeap):
+        print(float(-MaxHeap[0]))
+    else:
+        # else return the top of min heap
+        print(float(MinHeap[0]))
+
+# Time Complexity : O(logn) (for pop)
+#                   O(n*logn) (for push)
+# Space Complexity : O(n)
