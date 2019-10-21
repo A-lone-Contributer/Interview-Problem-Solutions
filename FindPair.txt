@@ -1,15 +1,21 @@
-# Given a list of numbers and a number k, return pair of  two numbers from the list which add up to k
-# (Asked in google)  --> easy
+# Given a list of numbers and a number k, return pair of two numbers from the list which add up to k
+
+# Asked in google 
+
+# Difficulty --> Easy
 
 # There can be a lot of ways to solve this problem. Naive approach would
-# be to check for all the combinations using nested for loop which would take
-# O(n^2) time. A better approach would be to use a set and search for the difference
-# between array elements and k in our list. This would take linear time and O(n) space
+# be to check for all the combinations using nested loop which would take
+# O(n^2) time. 
+
+# An efficient approach would be to use a set DS and search for the difference
+# of array elements and k in our list. This would take linear time and O(n) space
 
 
 def checkSum(arr, n, k):
     # HashMap to store our difference
     hashmap = {}
+    
     # Traversing the list
     for i in range(n):
 
@@ -18,6 +24,7 @@ def checkSum(arr, n, k):
 
         #  check if HashMap has the element needed
         if hashmap.get(k - arr[i]) and hashmap.get(k - arr[i]) != i:
+        
             # Printing the pairs (not duplicates)
             print(f"({arr[i]},{k - arr[i]})", sep=',')
 
