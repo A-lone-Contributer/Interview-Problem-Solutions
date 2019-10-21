@@ -16,15 +16,19 @@
 # so we just push (i+1) to our stack.
 
 def decode(seq):
-    # A list implemented used as a stack
+    # A list implemented as stack
     l = []
+    
+    # Stores the size of given sequence
     n=len(seq)
 
     # resultant string
     decoded_string = ""
+    
     # loop running one more than the sequence length as the decoded string is
     # one more in lenght of sequence
     for i in range(0, n + 1):
+    
         # pushing number i+1 into the stack
         l.append(i + 1)
 
@@ -32,8 +36,10 @@ def decode(seq):
         # processed or current character is 'I'
         # (increasing)
         if i == len(seq) or seq[i] == "I":
-            # till the stack is empty
+        
+            # while the stack is empty
             while l:
+            
                 # add the elements in stack to the result 
                 decoded_string += str(l.pop())
 
