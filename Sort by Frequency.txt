@@ -1,33 +1,45 @@
-# To sort the array in decreasing order of frequency
-# This can be done by maintaining a hashmap and storing the keys as array
-# elements and the count as the corresponding values
+# To sort the array in decreasing order of frequency.
+
+
+# Approach :
+# This can be done by maintaining a hashmap and storing the array
+# elements as keys and the count as corresponding values.
 
 # Difficulty -> Medium
 
 
-def occurance(arr, n):
+def occurrence(arr, n):
+
     # a hash map
     hash_map = {}
 
     # Traversing the array
     for item in arr:
-        # checking if item is already in hashmap them incrementing the occurance
+
+        # checking if item is already in hash-map, if yes ,then incrementing the occurrence
         # by 1
         if item in hash_map:
             hash_map[item] += 1
+
         # if not present then initialise the hashmap with (element,count) pair
         else:
             hash_map[item] = 1
+
     # list to store the modified array
     l = []
 
-    # for element and count in hashmap sorted by count(made sure through key=lambda x:x[1]) in reverse order
+    # for each element and count in hash-map sorted by count(made sure using key=lambda x:x[1]) in reverse order
     for element, count in sorted(hash_map.items(), key=lambda x: x[1], reverse=True):
+
         # while the count of element exists
-        while (count):
+        while count:
+
             # append in list
             l.append(element)
+
+            # Decrement the count 
             count -= 1
+
     # print the list
     print(l)
 
@@ -35,14 +47,14 @@ def occurance(arr, n):
 # Test case 1
 arr = [2, 5, 2, 8, 5, 6, 8, 8]
 n = len(arr)
-occurance(arr, n)
+occurrence(arr, n)
 
 print()
 
 # Test case 2
 arr1 = [2, 5, 2, 6, -1, 9999999, 5, 8, 8, 8]
 n = len(arr1)
-occurance(arr1, n)
+occurrence(arr1, n)
 
 # Time complexity = O(nlogn)
 # Space complexity = O(n)
