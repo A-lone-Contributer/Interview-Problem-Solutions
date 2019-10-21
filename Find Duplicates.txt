@@ -18,13 +18,15 @@
 
 # Another solution would be to use array modification to check for multiple occurrences.
 # As We know that the elements can be only be in between 1 and len(arr) thus we can
-# subtract one both sides to get the index. Now as we have the index so we go to
-# the array[value] and  negative it and repeat it for the whole array.
-# So we encounter the same value and if it is already negated then we know this element is repeated.
+# subtract one both sides to get the index.Now as we have the index so we go to
+# the array[value] and negate it and repeat this for the whole array.
+# So if we encounter the a value and if it is already negated then we know that element is repeated.
 
 
 def findDuplicates(arr):
+
     size = len(arr)
+    
     # Traverse through the whole array
     for i in range(0, size):
 
@@ -33,6 +35,7 @@ def findDuplicates(arr):
 
         # check if the value at idx is negative or not
         if arr[idx] < 0:
+        
             # if negative then we have already encountered thus a repeated element so print it as answer
             # Not using arr[idx] as it is subtracted by 1.
             print(abs(arr[i]))
@@ -40,7 +43,7 @@ def findDuplicates(arr):
         # else negating the value
         arr[idx] = -arr[idx]
 
-    # code to get the original array back.
+    # uncomment this code to get the original array back.
     # for i in range(0,size-1):
     #     arr[i]=abs(arr[i])
 
