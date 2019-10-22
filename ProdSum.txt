@@ -1,19 +1,20 @@
 # Given an array of integers, return a new array such that each element at index i of the
 # new array is the product of all the numbers in the original array except the one at i.
 
-# This problem was asked by Uber --> (Medium)
+# This problem was asked by Uber 
+# Difficulty --> Medium
 
 # To solve this problem we can calculate the product of left side and right side in separate array and 
-# multiply their respective elements into a new resultant array but this will take lot extra space 
-# We can do this efficiently with only one array doing both left and right product inplace 
+# multiply their respective elements into a new resultant array but this will take a lot of extra space O(3n). 
+# We can do this efficiently with only one array doing both left and right product inplace. This would take 
+# extra space but only O(n).
 
 def mularray(arr, n):
+
     i, temp = 1, 1
 
     # Allocate memory for the product array
     prod = [1] * n
-
-    # Initialize the product array as 1
 
     # In this loop, temp variable contains product of
     # elements on left side excluding arr[i]
@@ -21,10 +22,10 @@ def mularray(arr, n):
         prod[i] = temp
         temp *= arr[i]
 
-    # Reinitialize temp to 1 for product on right side
+    # Reinitialize temp to 1 for calculating product on right side
     temp = 1
 
-    # In this loop, we calculate  product of
+    # In this loop, we calculate product of
     # elements on right side excluding arr[i]
     for i in range(n - 1, -1, -1):
         prod[i] *= temp
@@ -50,4 +51,4 @@ n = len(arr1)
 mularray(arr1, n)
 
 # Time Complexity -> O(n)
-#  Space Complexity -> O(n)
+# Space Complexity -> O(n)
