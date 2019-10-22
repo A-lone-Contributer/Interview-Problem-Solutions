@@ -1,4 +1,4 @@
-# The area of a circle is defined as πr^2. Estimate π to 3 decimal places using a Monte Carlo method.
+# The area of a circle is defined as πr^2. Estimate π using a Monte Carlo method.
 
 # This problem was asked by Google
 # Difficulty -> Medium
@@ -26,6 +26,7 @@ from math import sqrt
 
 
 def piEstimation(iterations):
+
     # Initialize circle_points, square_points to 0
     circle_points, square_points = 0, 0
 
@@ -41,11 +42,10 @@ def piEstimation(iterations):
 
         # calculating the distance from origin (sqrt isn't mandatory as we have 1 on other side
         # but for better understanding i used it
-
         origin_dist = sqrt(rand_x ** 2 + rand_y ** 2)
 
         # if origin distance is 1 i.e we are inside the circle else inside square so increment the
-        # point count of those
+        # count of points of those
         if origin_dist <= 1:
             circle_points += 1
         square_points += 1
@@ -58,3 +58,6 @@ def piEstimation(iterations):
 
 # Driver code
 print(piEstimation(10000))
+
+# Time Complexity : O(n)
+# Space Complexity : O(1)
