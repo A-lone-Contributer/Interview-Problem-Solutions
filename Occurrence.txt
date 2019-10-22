@@ -1,17 +1,20 @@
 # Count the number of 2s as digit in all numbers from 0 to n.
 
-# Asked in amazon
+# Asked in Amazon
 # Difficulty -> Easy
 
 # Below is the concise python implementation
 
 
 def occurrenceof2(n):
+
     # count variable to count the occurrence of 2's
     count = 0
-    # traversing till the target
+    
+    # traverse till the target
     for i in range(1, n + 1):
-        # counting the nbr of 2's by casting each number to string
+    
+        # Cast the number to string and count the number of 2's and add it to count
         count += str(i).count('2')
 
     # return count
