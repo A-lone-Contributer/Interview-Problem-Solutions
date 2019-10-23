@@ -26,15 +26,18 @@ import heapq
 MinHeap = []
 MaxHeap = []
 
-# take input the number of input to give
+# take input the number of inputs to give
 n = int(input())
-# run a loop for each element
+
+# run a loop till n
 for i in range(1, n + 1):
-    # take each number as input
+
+    # input the data
     data = int(input())
 
     # if maxheap is empty or the data input is less than the root node
     if not MaxHeap or data < abs(MaxHeap[0]):
+    
         # push the element onto the heap
         # here -data is used as heapq module only provides min heap so we can
         # negate values to implement max heap
@@ -45,19 +48,24 @@ for i in range(1, n + 1):
 
     # if min heap has more elements as compared to max heap (more than 1)
     if len(MinHeap) - len(MaxHeap) > 1:
+    
         # then balancing is needed so balance the heaps by popping from min heap and negating the data as
         # we are pushing to max heap
         heapq.heappush(MaxHeap, -heapq.heappop(MinHeap))
+        
     # else max heap has more elements
     elif len(MaxHeap) - len(MinHeap) > 1:
+    
         # then balancing is needed so balance the heaps by popping from max heap and negating the data to get
         # back original as we are pushing to min heap
         heapq.heappush(MinHeap, -heapq.heappop(MaxHeap))
 
     # if both have same number of elements then it is the case of even elements so
     if len(MinHeap) == len(MaxHeap):
+    
         # take the average of root nodes
         print(float(MinHeap[0] - MaxHeap[0]) / 2.0)
+        
     # else if max heap is bigger then return top of max heap but negate as we want original value
     elif len(MinHeap) < len(MaxHeap):
         print(float(-MaxHeap[0]))
