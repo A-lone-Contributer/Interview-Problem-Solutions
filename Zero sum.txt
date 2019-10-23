@@ -1,12 +1,17 @@
 # To find the Subarray with zero sum
 
+# Asked in Amazon,MakemyTrip,Paytm
+# Difficulty --> Easy
 
-# This problem can be solve in O(n^2) time by checking for sum of all the
-# Sub-Arrays although we can improve this solution by the fact that if we 
-# encounter the same sum again that means the in between elements contributed nothing
-# hence our answer is that Sub-array. This runs in O(n) time.
+
+# This problem can be solved in O(n^2) time by checking for sum of all the
+# Sub-Arrays. We can improve this solution by using the fact that if we 
+# encounter the same sum again which we encountered for earlier index that means 
+# the in-between elements contributed nothing as they we got the same answer.So our answer is that 
+# Sub-array.This runs in O(n) time.
 
 def zeroSum(arr, n):
+
     # Using a Hash map like DS (dictionary in python) to keep
     # track of the previous encountered sum
     # maps sum and index value
@@ -17,8 +22,10 @@ def zeroSum(arr, n):
 
     # traversing whole array
     for i in range(0, n + 1):
+    
         # getting the value of sum from our dictionary
         old_idx = hash_map.get(sum_so_far)
+        
         # edge case where our Sub-array extends to the last element
         if not old_idx and i == n:
             return None
@@ -28,13 +35,15 @@ def zeroSum(arr, n):
 
             # inserting sum and key pair like {sum:key}
             hash_map[sum_so_far] = i
+            
             # adding the array element to our sum variable
             sum_so_far += arr[i]
+            
         else:
 
             # case where we have encountered a sum present in our Hash map
-            # thus it means the middle encountered elements contributed a sum of zero
-            # that is from old index to our current value
+            # thus it means the encountered elements contributed a sum of zero
+            # which will be from old index to our current value
             return arr[old_idx:i]
 
     # No Sub-array found with sum=0
@@ -54,5 +63,5 @@ print(zeroSum(arr2, n))
 arr3 = [4, 2, -3, 1, 6]
 print(zeroSum(arr3, n))
 
-#Time complexity :O(N)
-#Space complexity : O(N)
+# Time complexity : O(N)
+# Space complexity : O(N)
