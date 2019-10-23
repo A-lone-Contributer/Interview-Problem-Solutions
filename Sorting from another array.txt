@@ -1,49 +1,56 @@
 # Sort an array according to the order defined by another array
+
 # Asked in Amazon(on campus)
 # Difficulty -> Medium
 
 # Apporach:
-# Loop through A1[], store the count of every number in a HashMap (key: number, value: count of number)
-# Loop through A2[], check if it is present in HashMap, if so, put in output array that
+# Loop through first array,store the count of every number in a HashMap (key: number, value: count of number)
+# Loop through second array,check if it is present in HashMap, if so, add to output array that
 # many times and remove the number from HashMap.
-# Sort the rest of the numbers present in HashMap and put in output array
+# Sort the rest of the numbers present in HashMap and add to output array
 
 
 def hash(a1, a2):
+
     # hash map to store pair
     hash_map = {}
 
     # Traversing for each element in a1[]
     for element in a1:
+    
         # If element is already in map then increment the count corresponding to the element
         if element in hash_map:
             hash_map[element] += 1
+            
         # else put the element initialising the counter to 1
         else:
             hash_map[element] = 1
 
-    #  for each element in a2
+    # for each element in a2
     for item in a2:
 
         # if that item is present in hashmap
         if item in hash_map:
+        
             # get that item from the map
             for _ in range(hash_map.get(item)):
+            
                 # print that item
                 print(item)
 
-        # Considering the case where the key in a2[] may not be
+        # Considering the case where the key in a2 may not be
         # present in a1
         if item in a1:
+        
             # pop that item from the map
             hash_map.pop(item)
         else:
-
             continue
 
     # At this point we have exhausted the values in a2 and we now have element of a1 left to
     # output , so we will do just that in sorted order as output must be sorted
     for key, value in sorted(hash_map.items()):
+    
         # printing count times the value
         while (value):
             print(key)
@@ -63,5 +70,5 @@ a4 = [2, 1, 8, 3, 4]
 hash(a3, a4)
 
 # Time Complexity: O(mlogm)
-# where m: elements in a2
+# where m is the number of elements in a2
 # Space Complexity : O(1)
