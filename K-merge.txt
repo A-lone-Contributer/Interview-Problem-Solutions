@@ -1,4 +1,4 @@
- # Return a new sorted merged list from K sorted lists, each with size N
+# Return a new sorted merged list from K sorted lists, each with size N
 
 # Asked in Amazon,Flipkart and many more.
 
@@ -25,6 +25,7 @@ import heapq
 
 
 def kmerge(lists):
+
     # result list with size N*K
     final_merged_list = []
 
@@ -55,6 +56,8 @@ def kmerge(lists):
             next_tuple = (lists[list_ind][element_ind + 1],
                           list_ind,
                           element_ind + 1)
+                          
+            # Pushing onto the heap
             heapq.heappush(heap, next_tuple)
 
     # Return the final merged list
