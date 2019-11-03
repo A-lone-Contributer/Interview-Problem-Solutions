@@ -1,0 +1,48 @@
+# Convert Roman Numeral to Integer
+
+# Asked in Amazon,Facebook,Microsoft,Twitter
+
+# Difficulty -> Easy
+
+# Approach:
+# Keep a dictionary of roman numbers and key and their corresponding numbers as values.
+# We traverse the string of roman from the back and store the last character as the ans.
+# Loop from the second last character backwards. Keep on checking if the (i+1)th character is 
+# equal to or less than the ith character. If yes then add the result to our answer otherwise subtract it.
+
+def roman_to_int(s):
+
+    # dictionary {Roman : Integers}
+    roman_dict = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+
+    # Edge cases
+    if not s or len(s) == 0:
+        return 0
+
+    # initialise the ans variable with the integer value of last roman character
+    ans = roman_dict[s[-1]]
+
+    # loop from the second last character backwards
+    for i in range(len(s) - 2, -1, -1):
+
+        # if the character before it is greater than or equal to it
+        if roman_dict[s[i]] >= roman_dict[s[i + 1]]:
+
+            # then add its integer value to our answer
+            ans += roman_dict[s[i]]
+
+        else:
+
+            # else subtract it
+            ans -= roman_dict[s[i]]
+
+    # return ans
+    return ans
+
+
+# Driver code
+print(roman_to_int("MCM")) 
+
+
+# Time Complexity : O(n)
+# Space Complexity : O(1)
