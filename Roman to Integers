@@ -5,8 +5,8 @@
 # Difficulty -> Easy
 
 # Approach:
-# Keep a dictionary of roman numbers and key and their corresponding numbers as values.
-# We traverse the string of roman from the back and store the last character as the ans.
+# Keep a dictionary of roman numerals as keys and their corresponding numbers as values.
+# Now traverse the string of roman from the back and store the last character as the ans.
 # Loop from the second last character backwards. Keep on checking if the (i+1)th character is 
 # equal to or less than the ith character. If yes then add the result to our answer otherwise subtract it.
 
