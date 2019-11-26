@@ -34,7 +34,7 @@ def piEstimation(iterations):
     # for generating random values
     random.seed(None)
 
-    # loop running till the number of iterations (more iterations = better estimation)
+    # run loop till the number of iterations (more iterations = better estimation)
     for _ in range(0, iterations):
 
         # generating random values for x and y
@@ -45,7 +45,7 @@ def piEstimation(iterations):
         origin_dist = sqrt(rand_x ** 2 + rand_y ** 2)
 
         # if origin distance is 1 i.e we are inside the circle else inside square so increment the
-        # count of points of those
+        # respective point counts
         if origin_dist <= 1:
             circle_points += 1
         square_points += 1
