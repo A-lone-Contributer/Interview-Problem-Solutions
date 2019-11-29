@@ -111,10 +111,9 @@ def merge_sort(arr, start, end):
 
 # Driver Code
 arr = [2, 4, 1, 3, 5]
-
 inversion_count = merge_sort(arr, 0, len(arr) - 1)
-
 print(f"Number of inversions are: {inversion_count}")
+
 
 # Time Complexity : O(n*log(n))
 # Space Complexity : O(n)
