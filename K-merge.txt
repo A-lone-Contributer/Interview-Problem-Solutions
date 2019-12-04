@@ -5,24 +5,23 @@
 # Difficulty -> Medium
 
 # Approach:
-# There can be a lot of ways to approach this problem , one most intuitive approach
-# would be to copy the elements into a N*K size array and then sort(any O(N*log(N)) algorithm) the
+# There can be a lot of ways to approach this problem.An intuitive approach
+# would be to copy the elements into a N*K size array and then sort(using any O(N*log(N)) algorithm) the
 # resultant array which will take O(NK*log(NK))
 
 # Another approach (for smaller arrays) would be to compare the elements in every array like we do in
 # classic merge-sort and get a resultant sorted array at the end. This would take O(NK*K) time
 
-# One efficient solution is to first merge arrays into groups of 2. After first merging, we have K/2 arrays.
+# A efficient solution is to first merge arrays into groups of 2. After first merging, we have K/2 arrays.
 # We again merge arrays in groups, now we have K/4 arrays. We keep doing it unit we have one array left.
 # The time complexity of this solution would O(NK*log(K))
 
-# Another efficient solution is to use Min Heap. It has same time complexity which is O(NK*Log(K)).
-# But for different sized arrays, this solution works much better.
+# Another efficient solution is to use Min Heap. It has same time complexity which is O(NK*log(K))
+# but for different sized arrays, this solution works much better.
 
 
 # importing heap library
 import heapq
-
 
 def kmerge(lists):
 
@@ -50,8 +49,7 @@ def kmerge(lists):
         final_merged_list.append(value)
 
         # This if condition checks whether the list is exhausted. If element index is less than list index
-        # there will be elements so as long as there are elements in the given lists
-        # push the tuple onto the heap
+        # there will be elements so as long as there are elements push the tuple onto heap.
         if element_ind + 1 < len(lists[list_ind]):
             next_tuple = (lists[list_ind][element_ind + 1],
                           list_ind,
