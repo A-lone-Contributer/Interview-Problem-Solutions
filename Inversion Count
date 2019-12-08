@@ -105,7 +105,7 @@ def merge_sort(arr, start, end):
         # merge the arrays and add the inversion count for the merge step
         inv_count += merge(arr, start, end)
 
-    # return the inversion count
+    # return the count
     return inv_count
 
 
