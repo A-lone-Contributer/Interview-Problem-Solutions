@@ -3,9 +3,6 @@
 # Asked in Amazon
 # Difficulty -> Easy
 
-# Below is the concise python implementation
-
-
 def occurrenceof2(n):
 
     # count variable to count the occurrence of 2's
