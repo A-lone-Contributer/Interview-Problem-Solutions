@@ -14,7 +14,7 @@
 # An efficient approach would be to use merge sort technique which is a divide and conquer paradigm.
 # We can simply divide the array and merge it back checking the inversion condition for each left and right
 # sub-array. The total number of inversions will be the inversions encountered in left half , right half and
-# in tbe merge step.This would run in O(n*log(n)) time. But there are more better methods out there such as using
+# in the merge step. This would run in O(n*log(n)) time. But there are more better methods out there such as using
 # Fenwick trees.
 
 
