@@ -11,8 +11,7 @@
 # that character when the last recursion lvl i.e string is exhauted then backtrack and find the non-zero count and
 # do the same till all permutations are found
 
-def permute(s):
-    
+def string_permutation(s):
     mapping = {}
 
     # creating a dictionary with character,count as key,value pair
@@ -22,48 +21,54 @@ def permute(s):
         else:
             mapping[char] = 1
 
-    string = []
+    characters = []
     count = []
 
-    # create a list of sorted string character and their respective counts
+    # create a list of sorted string character and their counts
     for i, j in sorted(mapping.items()):
-        string.append(i)
+        characters.append(i)
         count.append(j)
 
+    # array to store the result
     result = [0] * len(s)
 
-    permutation(string, count, result, 0)
+    string_permutation_helper(characters, count, result, 0)
 
 
-def permutation(string, count, result, level):
-    
+def string_permutation_helper(s, count, result, level):
     # if the recursion level is equal to length of string
+
     if level == len(result):
         # print the result and return
-        print(result)
+        print("".join(result))
         return
 
-    # Traverse through the string
-    for i in range(len(string)):
+    # Traverse through the whole string
+    for i in range(len(s)):
 
-        # if count is zero the skip
+        # if count is zero, do nothing
         if count[i] == 0:
             continue
 
-        # if non-zero count then insert the element in result and decrement its count
-        result[level] = string[i]
+        # if count is non-zero then insert the element in result and decrement its count
+        result[level] = s[i]
         count[i] -= 1
 
         # call the function recursively for the next level
-        permutation(string, count, result, level + 1)
+        string_permutation_helper(s, count, result, level + 1)
 
         # incrementing the count which was decremented before going into recursion
         count[i] += 1
 
 
 # Driver code
-string = input()
-permute(string)
+string = input("Enter your string: ")
+
+if string:
+    print("Permutations of given string are: ")
+    string_permutation(string)
+else:
+    print("String length should be atleast 1.")
 
 # Time Complexity : O(n!)
 # Space Complexity : O(n)
