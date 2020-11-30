@@ -13,8 +13,7 @@ def occurrenceof2(n):
     
         # Cast the number to string and count the number of 2's and add it to count
         count += str(i).count('2')
-
-    # return count
+        
     return count
 
 
